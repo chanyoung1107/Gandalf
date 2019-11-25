@@ -26,6 +26,8 @@ public class MainPage extends JPanel {
 	
 	public MainPage(JFrame mf, User user) {
 		
+		
+		
 		this.mf = mf;
 		jp = this;
 		
@@ -73,7 +75,7 @@ public class MainPage extends JPanel {
 		myPage.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new CY_MyPage(mf);
+				new CY_MyPage(mf, user);
 			}
 //			@Override
 //			public void mouseEntered(MouseEvent e) {

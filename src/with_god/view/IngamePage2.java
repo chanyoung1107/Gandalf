@@ -24,11 +24,12 @@ public class IngamePage2 extends JPanel {
 	private JLabel clientImage, clientNick, clientWin, clientDream;
 
 	////////////////////// 용훈 추가한거////////////////////////////////
-	public YH_QuizAnswer_ej2 qa = new YH_QuizAnswer_ej2();
-	public YH_GameBoard_ej2[] gb = new YH_GameBoard_ej2[100];
+	public YH_StoryQuizAnswer qa = new YH_StoryQuizAnswer();
+	public YH_StoryGameBoard[] gb = new YH_StoryGameBoard[100];
 	private int i = 0;
 	private int answerCtn = 0;
 	private String com;
+	private String quizKinds;
 	private int x, y;
 	private int f;
 	//////////////////////////////////////////////////////////////
@@ -47,8 +48,9 @@ public class IngamePage2 extends JPanel {
 		////////////////////// 용훈 추가한거////////////////////////////////
 		for (int j = 0; j < gb.length; j++) {
 			f = j;
-			gb[j] = new YH_GameBoard_ej2(jp, this, gb, f);
+			gb[j] = new YH_StoryGameBoard(jp, this, gb, f, user);
 		}
+		f=0;
 		////////////////////// 용훈 추가한거////////////////////////////////
 //		nemo = gb;
 //		nemo.setBounds(30, 30, 620, 620);
@@ -69,12 +71,15 @@ public class IngamePage2 extends JPanel {
 		// yesL.setBounds(100, 300, 100, 50);
 		yesL.setSize(90, 40);
 		yesL.setLocation(80, 170);
-		f=0;
+		
 		yesL.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ingamepanel(mf, jp, user, stageNumber);
-				gb[f].CreateGameboard();
+				///////////용훈 추가/////////////////
+				quizKinds = "문제1000개.txt";
+				///////////용훈 추가/////////////////
+				gb[f].CreateGameboard(quizKinds);
 				jp.repaint();
 
 				di2.dispose();
@@ -221,7 +226,7 @@ public class IngamePage2 extends JPanel {
 		exit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new SY_exitDialog(mf, jp);
+				new SY_exitDialog(mf, jp, user);
 
 			}
 		});
@@ -317,6 +322,7 @@ public class IngamePage2 extends JPanel {
 	}
 	////////////////////// 용훈 추가한거////////////////////////////////
 	
+	
 	public int getAnswerCtn() {
 		return answerCtn;
 	}
@@ -332,21 +338,21 @@ public class IngamePage2 extends JPanel {
 	public void setCom(String com) {
 		this.com = com;
 	}
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
+//	public int getX() {
+//		return x;
+//	}
+//
+//	public int getY() {
+//		return y;
+//	}
+//
+//	public void setX(int x) {
+//		this.x = x;
+//	}
+//
+//	public void setY(int y) {
+//		this.y = y;
+//	}
 
 	public int getF() {
 		return f;
@@ -355,5 +361,14 @@ public class IngamePage2 extends JPanel {
 	public void setF(int f) {
 		this.f = f;
 	}
+
+	public String getQuizKinds() {
+		return quizKinds;
+	}
+
+	public void setQuizKinds(String quizKinds) {
+		this.quizKinds = quizKinds;
+	}
+	
 	////////////////////////////////////////////////////////
 }
