@@ -9,30 +9,34 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
+import with_god.controller.UserManager;
 import with_god.model.vo.User;
 import with_god.model.vo.YH_Quiz;
 
 public class YH_CategoryQuizAnswer extends JTextField {
 
 	private JPanel panel;
-	
+
 	private String text;
+
+	boolean goStop = true;
 	
 	private static int f;
-	
+
 	private InGamePage igp;
 	private YH_CategoryGameBoard[] gb;
 	private User user;
+	UserManager um = new UserManager();
 
 	private JLabel[][] l;
 	private YH_Quiz[][][] quiz;
-	
+
 	public YH_CategoryQuizAnswer() {
 
 	}
 
-	public YH_CategoryQuizAnswer(JPanel panel, YH_Quiz[][][] quiz, JLabel[][] l, InGamePage igp, YH_CategoryGameBoard[] gb,
-			int f, User user) {
+	public YH_CategoryQuizAnswer(JPanel panel, YH_Quiz[][][] quiz, JLabel[][] l, InGamePage igp,
+			YH_CategoryGameBoard[] gb, int f, User user) {
 		this.panel = panel;
 		this.quiz = quiz;
 		this.l = l;
@@ -47,6 +51,7 @@ public class YH_CategoryQuizAnswer extends JTextField {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				text = tf.getText();
+				goStop = true;
 				KeyCompare();
 				tf.setText("");
 				tf.requestFocus();
@@ -56,13 +61,13 @@ public class YH_CategoryQuizAnswer extends JTextField {
 	}
 
 	public void KeyCompare() {
-
+		System.out.println("user.getScore()의 값 : " + user.getScore());
 		System.out.println("igp.getCom()의 값 : " + igp.getCom());
 		System.out.println("text의 값 : " + text);
 
 		if (igp.getCom().equals(text)) {
 			System.out.println("일치한다");
-
+			
 			igp.setAnswerCtn(igp.getAnswerCtn() + 1);
 			for (int i = 0; i < l.length; i++) {
 				for (int j = 0; j < l[i].length; j++) {
@@ -73,15 +78,30 @@ public class YH_CategoryQuizAnswer extends JTextField {
 						gb[igp.getF()].l[i][j].setOpaque(true);
 						gb[igp.getF()].l[i][j].setBackground(Color.GRAY);
 						// yh[igp.getF()].l[i][j].setBorder(new LineBorder(Color.red, 5, true));
+
+						if (goStop) {
+							igp.setScore(igp.getScore() + 10);
+							igp.getScoreL().setText("Score : " + igp.getScore());
+							goStop = false;
+						}
 					}
 				}
 			}
-			if (igp.getAnswerCtn() == 5) {
+			if (igp.getAnswerCtn() == 15) {
 				panel.remove(gb[igp.getF()]);
 				igp.setF(igp.getF() + 1);
 				gb[igp.getF()].CreateGameboard(igp.getQuizKinds());
 				panel.repaint();
 				igp.setAnswerCtn(0);
+				
+				user.setScore(user.getScore()+igp.getScore());
+				user.setCoin(user.getCoin() + 500);
+				
+				um.updateScore(user);
+				um.updateCoin(user);
+				
+				System.out.println(user.getCoin());
+				System.out.println(user.getScore());
 			}
 
 		} else {
