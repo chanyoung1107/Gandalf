@@ -24,7 +24,6 @@ public class UserDao {
 			
 				list = (ArrayList <User>)ois.readObject();
 				
-//				list.get(i).getId().eq(text);
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}catch (IOException e) {

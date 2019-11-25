@@ -20,6 +20,7 @@ public class CY_AskPassword {
 	
 	
 	public CY_AskPassword (JFrame mf, User tp) {
+
 	Dialog dg = new Dialog(mf, true);
 	dg.setUndecorated(true);
 	dg.setSize(550, 250);
