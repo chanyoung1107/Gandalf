@@ -170,7 +170,7 @@ public class EJ_GameModeChoicePanel extends JPanel{
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			ChangePanel.changePanel(mf, jp, new MainPage(mf));
+			ChangePanel.changePanel(mf, jp, new MainPage(mf, user));
 
 
 			//				Timer timer = new Timer(mf, sm);

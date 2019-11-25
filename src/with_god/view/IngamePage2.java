@@ -23,6 +23,10 @@ public class IngamePage2 extends JPanel {
 	private JLabel infoBox, exit, king, VS;
 	private JLabel clientImage, clientNick, clientWin, clientDream;
 
+	//////////////////////은진 추가한거////////////////////////////////
+	private JLabel scoreL;
+	private int score;
+
 	////////////////////// 용훈 추가한거////////////////////////////////
 	public YH_StoryQuizAnswer qa = new YH_StoryQuizAnswer();
 	public YH_StoryGameBoard[] gb = new YH_StoryGameBoard[100];
@@ -52,8 +56,8 @@ public class IngamePage2 extends JPanel {
 		}
 		f=0;
 		////////////////////// 용훈 추가한거////////////////////////////////
-//		nemo = gb;
-//		nemo.setBounds(30, 30, 620, 620);
+		//		nemo = gb;
+		//		nemo.setBounds(30, 30, 620, 620);
 
 		Dialog di2 = new Dialog(mf, "확인", true);
 		di2.setSize(400, 250);
@@ -71,7 +75,7 @@ public class IngamePage2 extends JPanel {
 		// yesL.setBounds(100, 300, 100, 50);
 		yesL.setSize(90, 40);
 		yesL.setLocation(80, 170);
-		
+
 		yesL.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -141,10 +145,10 @@ public class IngamePage2 extends JPanel {
 
 		itemH = new JLabel(new ImageIcon(new ImageIcon("images/해원맥.png").getImage().getScaledInstance(80, 130, 0)));
 		itemH.setBounds(850, 580, 80, 130);
-		
+
 		if(stageNumber == 1) {
 			king = new JLabel(new ImageIcon(new ImageIcon("images/세영.jpg").getImage().getScaledInstance(180, 250, 0)));
-			
+
 		}else if(stageNumber == 2) {
 			king = new JLabel(new ImageIcon(new ImageIcon("images/찬영.jpg").getImage().getScaledInstance(180, 250, 0)));
 		}else if(stageNumber == 3) {
@@ -156,14 +160,14 @@ public class IngamePage2 extends JPanel {
 		}else if(stageNumber == 6) {
 			king = new JLabel(new ImageIcon(new ImageIcon("images/윤중.jpg").getImage().getScaledInstance(180, 250, 0)));
 		}
-		
-		
+
+
 		king.setBounds(700, 300, 180, 250);
-		
-		
+
+
 		VS = new JLabel(new ImageIcon(new ImageIcon("images/VS.png").getImage().getScaledInstance(140, 140, 0)));
 		VS.setBounds(850, 350, 140, 140);
-		
+
 		question = new JLabel(
 				new ImageIcon(new ImageIcon("images/그라데이션그레이.jpg").getImage().getScaledInstance(600, 150, 0)));
 		question.setBounds(690, 30, 570, 150);
@@ -220,6 +224,15 @@ public class IngamePage2 extends JPanel {
 		itemCountHT.setSize(200, 60);
 		itemCountHT.setFont(new Font("DX새날B", Font.BOLD, 25));
 		itemCountHT.setForeground(Color.WHITE);
+		
+		//////////////////////은진 추가한거////////////////////////////////		
+		scoreL = new JLabel("Score : " +score, JLabel.CENTER);
+		scoreL.setLocation(955, 600);
+		scoreL.setSize(300, 70);
+		scoreL.setFont(new Font("고딕", Font.BOLD, 30));
+		scoreL.setForeground(Color.WHITE);
+		////////////////////////////////////////////////////////////////////
+
 
 		exit = new JLabel(new ImageIcon(new ImageIcon("images/exit.png").getImage().getScaledInstance(50, 50, 0)));
 		exit.setBounds(1220, 700, 50, 50);
@@ -293,7 +306,7 @@ public class IngamePage2 extends JPanel {
 		this.add(itemK);
 		this.add(itemD);
 		this.add(itemH);
-//		this.add(nemo);
+		//		this.add(nemo);
 		this.add(question);
 		this.add(answer);
 		this.add(infoBox);
@@ -307,8 +320,9 @@ public class IngamePage2 extends JPanel {
 		this.add(itemCountHT);
 		this.add(king);
 		this.add(VS);
+		this.add(scoreL);
 
-		this.setComponentZOrder(background, 111);
+		this.setComponentZOrder(background, 113);
 		this.setComponentZOrder(clientDream, 1);
 		this.setComponentZOrder(clientImage, 1);
 		this.setComponentZOrder(clientNick, 1);
@@ -318,11 +332,12 @@ public class IngamePage2 extends JPanel {
 		this.setComponentZOrder(itemCountHT, 0);
 		this.setComponentZOrder(king, 1);
 		this.setComponentZOrder(VS, 0);
+		this.setComponentZOrder(scoreL, 0);
 		mf.add(jp);
 	}
 	////////////////////// 용훈 추가한거////////////////////////////////
-	
-	
+
+
 	public int getAnswerCtn() {
 		return answerCtn;
 	}
@@ -338,21 +353,21 @@ public class IngamePage2 extends JPanel {
 	public void setCom(String com) {
 		this.com = com;
 	}
-//	public int getX() {
-//		return x;
-//	}
-//
-//	public int getY() {
-//		return y;
-//	}
-//
-//	public void setX(int x) {
-//		this.x = x;
-//	}
-//
-//	public void setY(int y) {
-//		this.y = y;
-//	}
+	//	public int getX() {
+	//		return x;
+	//	}
+	//
+	//	public int getY() {
+	//		return y;
+	//	}
+	//
+	//	public void setX(int x) {
+	//		this.x = x;
+	//	}
+	//
+	//	public void setY(int y) {
+	//		this.y = y;
+	//	}
 
 	public int getF() {
 		return f;
@@ -369,6 +384,22 @@ public class IngamePage2 extends JPanel {
 	public void setQuizKinds(String quizKinds) {
 		this.quizKinds = quizKinds;
 	}
-	
+
+	public JLabel getScoreL() {
+		return scoreL;
+	}
+
+	public void setScoreL(JLabel scoreL) {
+		this.scoreL = scoreL;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
 	////////////////////////////////////////////////////////
 }
