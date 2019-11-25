@@ -24,7 +24,6 @@ public class SB_StoryModeChoiceMap extends JPanel {
 	private boolean stage3 =  false;
 	private boolean stage4 =  true; 
 	private int computer = 200;
-	private int win = 1;
 	public SB_StoryModeChoiceMap(JFrame mf, User user) {
 		jp = this;
 		this.mf = mf;
@@ -97,7 +96,7 @@ public class SB_StoryModeChoiceMap extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//SB_StoryModeT smt = new SB_StoryModeT(mf);
-				ChangePanel.changePanel(mf, jp, new IngamePage2(mf, user));
+				ChangePanel.changePanel(mf, jp, new IngamePage2(mf, user, 1));
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -111,8 +110,8 @@ public class SB_StoryModeChoiceMap extends JPanel {
 		stageChoice2L.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (win == 2){
-					ChangePanel.changePanel(mf, jp, new IngamePage2(mf, user));
+				if (user.getWin() == 1){
+					ChangePanel.changePanel(mf, jp, new IngamePage2(mf, user, 2));
 				}else {
 					new SB_StageAccess(mf);
 				}
@@ -130,8 +129,8 @@ public class SB_StoryModeChoiceMap extends JPanel {
 		stageChoice3L.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (win == 3) {
-					ChangePanel.changePanel(mf, jp, new IngamePage2(mf, user));
+				if (user.getWin() == 2) {
+					ChangePanel.changePanel(mf, jp, new IngamePage2(mf, user, 3));
 				}else {
 					new SB_StageAccess(mf);
 				}
@@ -148,8 +147,8 @@ public class SB_StoryModeChoiceMap extends JPanel {
 		stageChoice4L.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(win == 4) {
-					ChangePanel.changePanel(mf, jp, new IngamePage2(mf, user));
+				if(user.getWin() == 3) {
+					ChangePanel.changePanel(mf, jp, new IngamePage2(mf, user, 4));
 				}else {
 					new SB_StageAccess(mf);
 				}
@@ -166,8 +165,8 @@ public class SB_StoryModeChoiceMap extends JPanel {
 		stageChoice5L.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(win == 5) {
-					ChangePanel.changePanel(mf, jp, new IngamePage2(mf, user));
+				if(user.getWin() == 4) {
+					ChangePanel.changePanel(mf, jp, new IngamePage2(mf, user, 5));
 				}else {
 					new SB_StageAccess(mf);
 				}
@@ -184,8 +183,8 @@ public class SB_StoryModeChoiceMap extends JPanel {
 		stageChoice6L.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(win == 6) {
-					ChangePanel.changePanel(mf, jp, new IngamePage2(mf, user));
+				if(user.getWin() == 5) {
+					ChangePanel.changePanel(mf, jp, new IngamePage2(mf, user, 6));
 				}else {
 					new SB_StageAccess(mf);
 				}
@@ -202,8 +201,8 @@ public class SB_StoryModeChoiceMap extends JPanel {
 		stageChoice7L.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(win == 7) {
-					ChangePanel.changePanel(mf, jp, new IngamePage2(mf, user));
+				if(user.getWin() == 6) {
+					ChangePanel.changePanel(mf, jp, new IngamePage2(mf, user, 7));
 				}else {
 					new SB_StageAccess(mf);
 				}
@@ -220,7 +219,7 @@ public class SB_StoryModeChoiceMap extends JPanel {
 		exitL.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ChangePanel.changePanel(mf, jp, new MainPage(mf));
+				ChangePanel.changePanel(mf, jp, new MainPage(mf, user));
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -246,7 +245,7 @@ public class SB_StoryModeChoiceMap extends JPanel {
 		this.add(stageName7);
 		this.add(backgroundL);
 		this.add(exitL);
-
+		
 		/*
 		 * this.setComponentZOrder(stageChoice1L, 0);
 		 * this.setComponentZOrder(stageChoice2L, 0);
