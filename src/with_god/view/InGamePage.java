@@ -145,9 +145,9 @@ public class InGamePage extends JPanel {
 		// itemD.setBounds(755, 480, 80, 130);
 		//
 		//
-		 itemH = new JLabel(new ImageIcon(new
-		 ImageIcon("images/해원맥.png").getImage().getScaledInstance(80, 130, 0)));
-		 itemH.setBounds(850, 500, 80, 130);
+		itemH = new JLabel(new ImageIcon(new
+				ImageIcon("images/해원맥.png").getImage().getScaledInstance(80, 130, 0)));
+		itemH.setBounds(850, 500, 80, 130);
 
 		question = new JLabel(
 				new ImageIcon(new ImageIcon("images/그라데이션그레이.jpg").getImage().getScaledInstance(600, 150, 0)));
@@ -200,11 +200,11 @@ public class InGamePage extends JPanel {
 		// itemCountDT.setFont(new Font("DX새날B", Font.BOLD, 25));
 		// itemCountDT.setForeground(Color.WHITE);
 		//
-		 itemCountHT = new JLabel("해원맥 : " + itemCountH);
-		 itemCountHT.setLocation(850, 630);
-		 itemCountHT.setSize(200,60);
-		 itemCountHT.setFont(new Font("DX새날B", Font.BOLD, 25));
-		 itemCountHT.setForeground(Color.WHITE);
+		itemCountHT = new JLabel("해원맥 : " + itemCountH);
+		itemCountHT.setLocation(850, 630);
+		itemCountHT.setSize(200,60);
+		itemCountHT.setFont(new Font("DX새날B", Font.BOLD, 25));
+		itemCountHT.setForeground(Color.WHITE);
 		//
 
 		exit = new JLabel(new ImageIcon(new ImageIcon("images/exit.png").getImage().getScaledInstance(50, 50, 0)));
@@ -215,6 +215,15 @@ public class InGamePage extends JPanel {
 				t1.suspend();
 				new SY_exitDialog(mf, jp, t1);
 
+			}
+		});
+		itemH.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				user.setItemCountH(user.getItemCountH() - 1);
+				itemCountHT.setText(user.getItemCountH() + "");
 			}
 		});
 
@@ -245,7 +254,7 @@ public class InGamePage extends JPanel {
 		this.add(background);
 		// this.add(itemK);
 		// this.add(itemD);
-		 this.add(itemH);
+		this.add(itemH);
 		// this.add(nemo);
 		this.add(question);
 		this.add(answer);
@@ -257,7 +266,7 @@ public class InGamePage extends JPanel {
 		this.add(clientWin);
 		// this.add(itemCountKT);
 		// this.add(itemCountDT);
-		 this.add(itemCountHT);
+		this.add(itemCountHT);
 
 		this.setComponentZOrder(itemCountHT, 0);
 		this.setComponentZOrder(background, 111);
@@ -269,7 +278,7 @@ public class InGamePage extends JPanel {
 	}
 
 	////////////////////// 용훈 추가한거////////////////////////////////
-	
+
 	public int getAnswerCtn() {
 		return answerCtn;
 	}

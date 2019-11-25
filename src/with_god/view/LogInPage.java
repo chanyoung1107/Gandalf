@@ -105,7 +105,7 @@ public class LogInPage extends JPanel {
 		        	  if(tf1.getText().equals(list.get(i).getId())) {
 		        		  System.out.println("일치한다" + list.get(i).getId());
 		        		  System.out.println("일치한다" + tf1); 
-//						ChangePanel.changePanel(mf, jp, new MainPage(mf, list[i]));
+		        		  ChangePanel.changePanel(mf, jp, new MainPage(mf, list.get(i)));
 		        		  
 		        		  break;
 		        	  }else {

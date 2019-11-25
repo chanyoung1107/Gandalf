@@ -23,12 +23,12 @@ public class EJ_RandomBox extends JPanel {
 	private int itemCountD = 0;
 	private int itemCountK = 0;
 	private int itemCountH = 0;
-	private HashMap<String, Integer> itemhm = new HashMap<String, Integer>();
+	//private HashMap<String, Integer> itemhm = new HashMap<String, Integer>();
 	
-	public EJ_RandomBox() {
-		itemhm.put("´öÃá", itemCountD);
-		itemhm.put("°­¸²", itemCountK);
-		itemhm.put("ÇØ¿ø¸Æ", itemCountH);
+	public EJ_RandomBox(User user) {
+		itemCountK = user.getItemCountK();
+		itemCountH = user.getItemCountH();
+		itemCountD = user.getItemCountD();
 	}
 	
 	public Dialog sd(JFrame mf, User user) {
@@ -39,18 +39,18 @@ public class EJ_RandomBox extends JPanel {
 		if(itemRandom == 0) {
 			itemlb = new JLabel(new ImageIcon(new ImageIcon("Images/ÇØ¿ø¸Æ.png").getImage().getScaledInstance(imageSizeW, imageSizeH, 0)));
 			user.setItemCountH(user.getItemCountH() + 1);
-			itemhm.put("ÇØ¿ø¸Æ", itemCountH);
+		//	itemhm.put("ÇØ¿ø¸Æ", itemCountH);
 			
 
 		}else if(itemRandom == 1) {
 			itemlb = new JLabel(new ImageIcon(new ImageIcon("Images/°­¸².png").getImage().getScaledInstance(imageSizeW, imageSizeH, 0)));
 			user.setItemCountK(user.getItemCountK() + 1);
-			itemhm.put("°­¸²", itemCountK);
+		//	itemhm.put("°­¸²", itemCountK);
 
 		}else {
 			itemlb = new JLabel(new ImageIcon(new ImageIcon("Images/´öÃá.png").getImage().getScaledInstance(imageSizeW, imageSizeH, 0)));
 			user.setItemCountD(user.getItemCountD() + 1);
-			itemhm.put("´öÃá", itemCountD);
+		//	itemhm.put("´öÃá", itemCountD);
 
 		}
 		
@@ -83,14 +83,14 @@ public class EJ_RandomBox extends JPanel {
 		return sd;
 	}
 
-	public HashMap<String, Integer> getItemhm() {
-		return itemhm;
-	}
-
-	public void setItemhm(HashMap<String, Integer> itemhm) {
-		this.itemhm = itemhm;
-	}
-	
-	
+//	public HashMap<String, Integer> getItemhm() {
+//		return itemhm;
+//	}
+//
+//	public void setItemhm(HashMap<String, Integer> itemhm) {
+//		this.itemhm = itemhm;
+//	}
+//	
+//	
 	
 }

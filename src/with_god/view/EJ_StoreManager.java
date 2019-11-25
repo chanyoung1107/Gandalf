@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -36,7 +37,7 @@ public class EJ_StoreManager extends JPanel {
 	
 	public EJ_StoreManager(JFrame mf, User user) {
 
-		EJ_RandomBox rb = new EJ_RandomBox();
+		EJ_RandomBox rb = new EJ_RandomBox(user);
 		this.mf = mf;
 		coinCount = user.getCoin();
 		
@@ -144,7 +145,7 @@ public class EJ_StoreManager extends JPanel {
 		exit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MainPage mp = new MainPage(mf);
+				MainPage mp = new MainPage(mf, user);
 				
 				ChangePanel.changePanel(mf, jp,mp);
 
