@@ -1,9 +1,7 @@
 package with_god.model.vo;
 
-import java.awt.Image;
 import java.io.Serializable;
 
-import javax.swing.ImageIcon;
 
 public class User implements Serializable{
 	//회원 아이디

@@ -18,9 +18,11 @@ import with_god.controller.CY_ChooseDirectory;
 import with_god.model.vo.User;
 
 public class CY_FixPage {
+	
 
 	
-	public CY_FixPage(JFrame mf, User tp) {
+	public CY_FixPage(JFrame mf, User user) {
+		String tempImage = user.getImageLoad();
 		Dialog dg = new Dialog(mf, true);
 		dg.setUndecorated(true);
 		dg.setSize(500, 600);
@@ -28,7 +30,7 @@ public class CY_FixPage {
 		dg.setLocationRelativeTo(mf);
 		
 		JLabel groundL = new JLabel(new ImageIcon(new ImageIcon("images/그라데이션그레이.jpg").getImage().getScaledInstance(550, 680, 0)));
-		JLabel imageL = new JLabel(new ImageIcon(new ImageIcon(tp.getImageLoad()).getImage().getScaledInstance(150, 150, 0)));
+		JLabel imageL = new JLabel(new ImageIcon(new ImageIcon(user.getImageLoad()).getImage().getScaledInstance(150, 150, 0)));
 		JLabel fixOrange = new JLabel(new ImageIcon(new ImageIcon("images/오렌지버튼.png").getImage().getScaledInstance(50, 30, 0)));
 		JLabel fixL  = new JLabel("변경");
 		JLabel PwL1 = new JLabel("비밀번호 변경");
@@ -84,8 +86,8 @@ public class CY_FixPage {
 		fixDreamT.setFont(new Font("휴먼편지체", Font.BOLD, 25));
 		fixEmailT.setFont(new Font("휴먼편지체", Font.BOLD, 25));
 
-		fixDreamT.setText(tp.getDream());
-		fixEmailT.setText(tp.getEmail());
+		fixDreamT.setText(user.getDream());
+		fixEmailT.setText(user.getEmail());
 		
 		dg.add(fixPwdT1);
 		dg.add(fixPwdT2);
@@ -117,9 +119,10 @@ public class CY_FixPage {
 		fixL.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new CY_ChooseDirectory(tp);
+				
+				new CY_ChooseDirectory(user);
 				//현재 페이지의 이미지를 새로고침 해준다.
-				imageL.setIcon(new ImageIcon(new ImageIcon(tp.getImageLoad()).getImage().getScaledInstance(150, 150, 0)));
+				imageL.setIcon(new ImageIcon(new ImageIcon(user.getImageLoad()).getImage().getScaledInstance(150, 150, 0)));
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -150,14 +153,11 @@ public class CY_FixPage {
 					if(pw1.equals(pw2)) {
 						//같으면 수정 정보 객체에 저장 후
 						//확인 Dialog창 띄운후 마이페이지로 넘어감
-						tp.setPw(pw1);
-						tp.setDream(fixDreamT.getText());
-						tp.setEmail(fixEmailT.getText());
+						user.setPw(pw1);
+						user.setDream(fixDreamT.getText());
+						user.setEmail(fixEmailT.getText());
 						
 						JOptionPane.showMessageDialog(mf, "성공적으로 변경되었습니다.", "확인", JOptionPane.INFORMATION_MESSAGE);
-						System.out.println("pw : " + pw1);
-						System.out.println(tp.getDream());
-						System.out.println("pw" + tp.getPw());
 						dg.dispose();
 						
 					}else {
@@ -171,8 +171,8 @@ public class CY_FixPage {
 				}else {
 					//비밀번호변경과 변경확인 창 모두 입력하지 않았을 경우
 					//다른 수정 정보만 객체에 저장 후 확인 dialog 창 띄운후 마이페이지로 넘어감
-					tp.setDream(fixDreamT.getText());
-					tp.setEmail(fixEmailT.getText());
+					user.setDream(fixDreamT.getText());
+					user.setEmail(fixEmailT.getText());
 					JOptionPane.showMessageDialog(mf, "성공적으로 변경되었습니다.",  "확인", JOptionPane.INFORMATION_MESSAGE);
 					dg.dispose();
 				}
@@ -188,6 +188,7 @@ public class CY_FixPage {
 		noL.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				user.setImageLoad(tempImage);
 				dg.dispose();
 			}
 			@Override
@@ -197,6 +198,8 @@ public class CY_FixPage {
 				buttonEnteredMusic.start();
 			}
 		});
+		
+		
 		dg.setVisible(true);
 	}
 }
