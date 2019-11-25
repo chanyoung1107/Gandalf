@@ -11,12 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import with_god.controller.ChangePanel;
+import with_god.model.vo.User;
 
 public class SB_Ranking extends JPanel {
 	
 	private JFrame mf;
 	private JPanel jp = this;
-	public SB_Ranking (JFrame mf) {
+	public SB_Ranking (JFrame mf,User user) {
 		this.mf = mf;
 		mf.add(this);
 		this.setLayout(null);
@@ -32,7 +33,7 @@ public class SB_Ranking extends JPanel {
 		exitL.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ChangePanel.changePanel(mf, jp, new MainPage(mf));
+				ChangePanel.changePanel(mf, jp, new MainPage(mf,user));
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
