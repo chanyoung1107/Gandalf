@@ -245,6 +245,7 @@ public class SB_StoryModeChoiceMap extends JPanel {
 		this.add(stageName7);
 		this.add(backgroundL);
 		this.add(exitL);
+		this.setComponentZOrder(exitL, 0);
 		
 		/*
 		 * this.setComponentZOrder(stageChoice1L, 0);
