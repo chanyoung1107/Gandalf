@@ -6,15 +6,13 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -36,15 +34,15 @@ public class LogInPage extends JPanel {
 	boolean b = false;
 	//패스워드 확인을 위한
 	boolean c = false;
-	
+
 	public LogInPage(JFrame mf) {
 		this.mf = mf;
 		jp = this;
 		mf.add(this);
 		this.setSize(1300, 800);
 		this.setLayout(null);
-		
-		
+
+
 		ImageIcon button1 = new ImageIcon(YJ_Run.class.getResource("../../image/button1.png"));
 		ImageIcon button2 = new ImageIcon(YJ_Run.class.getResource("../../image/button2.png"));
 		ImageIcon button3 = new ImageIcon(YJ_Run.class.getResource("../../image/button3.png"));
@@ -58,7 +56,7 @@ public class LogInPage extends JPanel {
 		JLabel menubar = new JLabel(new ImageIcon(YJ_Run.class.getResource("../../image/menubar.png")));
 		JLabel introgamebackgroundl = new JLabel(new ImageIcon(introgamebackground));
 
-		
+
 		JLabel lb = new JLabel("ID");
 		lb.setLocation(400, 410);
 		lb.setSize(150, 150);
@@ -99,28 +97,44 @@ public class LogInPage extends JPanel {
 				loginbutton.setIcon(login);
 			}
 
-		    @Override
-		       public void mouseClicked(MouseEvent e) {
-		          for(int i = 0; i < list.size(); i++) {
-		        	  if(tf1.getText().equals(list.get(i).getId())) {
-		        		  System.out.println("일치한다" + list.get(i).getId());
-		        		  System.out.println("일치한다" + tf1); 
-		        		  ChangePanel.changePanel(mf, jp, new MainPage(mf, list.get(i)));
-		        		  
-		        		  break;
-		        	  }else {
-		        		  System.out.println("불일치");
-		        	  }
-		          }
-		    	  
-		      }     
-		      });
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String pw1 = "";
+				for(char ch1 : tf2.getPassword()) {
+					Character.toString(ch1);
+					pw1 += ch1;
+				}
+
+				for(int i = 0; i < list.size(); i++) {
+					if(tf1.getText().equals(list.get(i).getId())) {
+						System.out.println("일치한다" + list.get(i).getId());
+						System.out.println("일치한다" + tf1); 
+						if(pw1.equals(list.get(i).getPw())) {
+							ChangePanel.changePanel(mf, jp, new MainPage(mf, list.get(i)));
+							break;
+						}else {
+							JOptionPane.showMessageDialog(mf, "정보가 일치하지 않습니다.", "x", JOptionPane.ERROR_MESSAGE);
+							tf1.setText("");
+							tf2.setText("");
+							tf1.requestFocus();
+							break;
+						}
+					}else {
+						JOptionPane.showMessageDialog(mf, "정보가 일치하지 않습니다.", "x", JOptionPane.ERROR_MESSAGE);
+						tf1.setText("");
+						tf2.setText("");
+						tf1.requestFocus();
+						System.out.println("불일치");
+					}
+				}
+			}     
+		});
 		this.add(loginbutton);
 
 		Signup.setBounds(400, 600, 200, 30);
-//		Signup.setBorderPainted(false);
-//		Signup.setContentAreaFilled(false);
-//		Signup.setFocusPainted(false);
+		//		Signup.setBorderPainted(false);
+		//		Signup.setContentAreaFilled(false);
+		//		Signup.setFocusPainted(false);
 		Signup.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -143,9 +157,9 @@ public class LogInPage extends JPanel {
 		this.add(Signup);
 
 		Find.setBounds(630, 600, 200, 30);
-//		Find.setBorderPainted(false);
-//		Find.setContentAreaFilled(false);
-//		Find.setFocusPainted(false);
+		//		Find.setBorderPainted(false);
+		//		Find.setContentAreaFilled(false);
+		//		Find.setFocusPainted(false);
 		Find.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -189,7 +203,7 @@ public class LogInPage extends JPanel {
 		// Music introMusic = new Music("introMusic.mp3", true);
 		// introMusic.start();
 
-		
+
 	}
 
 }

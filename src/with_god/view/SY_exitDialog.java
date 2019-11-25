@@ -71,10 +71,12 @@ public class SY_exitDialog {
 	public SY_exitDialog(JFrame jf, JPanel exitPanel , Thread timer1, User user) {
 			Dialog di = new Dialog(jf);
 			di.setBounds(400, 230, 500, 300);
+			di.setSize(500, 300);
+			di.setLocationRelativeTo(jf);
 			di.setLayout(null);
 			
 			
-			JLabel backGround = new JLabel(new ImageIcon(new ImageIcon("images/천국지옥.jpg").getImage().getScaledInstance(500, 300, 0)));
+			JLabel backGround = new JLabel(new ImageIcon(new ImageIcon("images/그라데이션그레이.jpg").getImage().getScaledInstance(500, 300, 0)));
 			JLabel quesExit = new JLabel("게임을 나가시겠습니까");
 			JLabel yesExit = new JLabel(new ImageIcon(new ImageIcon("images/yes.png").getImage().getScaledInstance(90,40, 0)));
 			JLabel noDispose = new JLabel(new ImageIcon(new ImageIcon("images/no.png").getImage().getScaledInstance(90,40, 0)));
@@ -89,7 +91,8 @@ public class SY_exitDialog {
 		    di.add(backGround);
 		    di.add(yesExit);
 		    di.add(noDispose);
-		    
+		    di.add(quesExit);
+		   
 		 
 		    di.setComponentZOrder(backGround,2);
 		    di.setComponentZOrder(quesExit, 0);

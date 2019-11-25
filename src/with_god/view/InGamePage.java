@@ -22,6 +22,9 @@ public class InGamePage extends JPanel {
 	private JLabel nemo, question, answer;
 	private JLabel infoBox, exit, timer;
 	private JLabel clientImage, clientNick, clientWin, clientDream;
+	//////////////////////은진 추가한거////////////////////////////////
+	private JLabel scoreL;
+	private int score;
 
 	////////////////////// 용훈 추가한거////////////////////////////////
 	public YH_CategoryQuizAnswer qa = new YH_CategoryQuizAnswer();
@@ -73,14 +76,14 @@ public class InGamePage extends JPanel {
 		// yesL.setBounds(100, 300, 100, 50);
 		yesL.setSize(90, 40);
 		yesL.setLocation(80, 170);
-		
+
 		yesL.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// InGamePage igp = new InGamePage(mf, user, new EJ_Timer());
 
 				ingamepanel(mf, jp, user, t1);
-				
+
 				quizKinds = "넌센스문제.txt";
 				gb[f].CreateGameboard(quizKinds);
 				jp.repaint();
@@ -186,6 +189,14 @@ public class InGamePage extends JPanel {
 		clientDream.setSize(200, 60);
 		clientDream.setFont(new Font("휴먼편지체", Font.BOLD, 20));
 		clientDream.setForeground(Color.WHITE);
+		
+		//////////////////////은진 추가한거////////////////////////////////		
+		scoreL = new JLabel("Score : " +score, JLabel.CENTER);
+		scoreL.setLocation(955, 600);
+		scoreL.setSize(300, 70);
+		scoreL.setFont(new Font("고딕", Font.BOLD, 30));
+		scoreL.setForeground(Color.WHITE);
+		////////////////////////////////////////////////////////////////////
 
 		itemCountK = user.getItemCountK();
 		itemCountD = user.getItemCountD();
@@ -208,7 +219,6 @@ public class InGamePage extends JPanel {
 		itemCountHT.setSize(200,60);
 		itemCountHT.setFont(new Font("DX새날B", Font.BOLD, 25));
 		itemCountHT.setForeground(Color.WHITE);
-		//
 
 		exit = new JLabel(new ImageIcon(new ImageIcon("images/exit.png").getImage().getScaledInstance(50, 50, 0)));
 		exit.setBounds(1220, 700, 50, 50);
@@ -224,7 +234,16 @@ public class InGamePage extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
+				
+				try {
+					System.out.println("해원맥이 시간을 5초 얼렸습니다!");
+					t1.suspend();
+					t1.sleep(5000);
+					t1.resume();
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				
 				user.setItemCountH(user.getItemCountH() - 1);
 				itemCountHT.setText(user.getItemCountH() + "");
 			}
@@ -270,6 +289,8 @@ public class InGamePage extends JPanel {
 		// this.add(itemCountKT);
 		// this.add(itemCountDT);
 		this.add(itemCountHT);
+		this.add(scoreL);
+		
 
 		this.setComponentZOrder(itemCountHT, 0);
 		this.setComponentZOrder(background, 111);
@@ -277,12 +298,12 @@ public class InGamePage extends JPanel {
 		this.setComponentZOrder(clientImage, 1);
 		this.setComponentZOrder(clientNick, 1);
 		this.setComponentZOrder(clientWin, 1);
-
+		this.setComponentZOrder(scoreL, 0);
 	}
 
 	////////////////////// 용훈 추가한거////////////////////////////////
-	
-	
+
+
 	public int getAnswerCtn() {
 		return answerCtn;
 	}
@@ -298,21 +319,21 @@ public class InGamePage extends JPanel {
 	public void setCom(String com) {
 		this.com = com;
 	}
-//	public int getX() {
-//		return x;
-//	}
-//
-//	public int getY() {
-//		return y;
-//	}
-//
-//	public void setX(int x) {
-//		this.x = x;
-//	}
-//
-//	public void setY(int y) {
-//		this.y = y;
-//	}
+	//	public int getX() {
+	//		return x;
+	//	}
+	//
+	//	public int getY() {
+	//		return y;
+	//	}
+	//
+	//	public void setX(int x) {
+	//		this.x = x;
+	//	}
+	//
+	//	public void setY(int y) {
+	//		this.y = y;
+	//	}
 
 	public int getF() {
 		return f;
@@ -329,6 +350,22 @@ public class InGamePage extends JPanel {
 	public void setQuizKinds(String quizKinds) {
 		this.quizKinds = quizKinds;
 	}
-	
+
+	public JLabel getScoreL() {
+		return scoreL;
+	}
+
+	public void setScoreL(JLabel scoreL) {
+		this.scoreL = scoreL;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
 	////////////////////////////////////////////////////////
 }
