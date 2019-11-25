@@ -1,6 +1,5 @@
 package with_god.controller;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -8,7 +7,7 @@ import with_god.model.vo.User;
 
 public class CY_ChooseDirectory {
 
-	public CY_ChooseDirectory(User tp) {
+	public CY_ChooseDirectory(User user) {
 	
 		//파일선택 객체 생성
 		JFileChooser chooser = new JFileChooser();
@@ -27,7 +26,9 @@ public class CY_ChooseDirectory {
 		System.out.println(filePath);
 		
 		//이미지를 회원객체에 넣어줌
-		tp.setImageLoad(filePath);
+		user.setImageLoad(filePath);
+		
+		
 	}
 }
 

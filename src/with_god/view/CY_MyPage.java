@@ -15,7 +15,7 @@ import with_god.model.vo.User;
 
 public class CY_MyPage {
 
-	public CY_MyPage(JFrame mf) {
+	public CY_MyPage(JFrame mf, User user) {
 		
 		Dialog dg = new Dialog(mf, "MyPage", true);
 		dg.setUndecorated(true);
@@ -23,10 +23,8 @@ public class CY_MyPage {
 		dg.setLayout(null);
 		dg.setLocationRelativeTo(mf);
 		
-		User tp = new User();
-		
 		JLabel groundL = new JLabel(new ImageIcon(new ImageIcon("images/그라데이션그레이.jpg").getImage().getScaledInstance(550, 680, 0)));
-		JLabel imageL = new JLabel(new ImageIcon(new ImageIcon(tp.getImageLoad()).getImage().getScaledInstance(150, 150, 0)));
+		JLabel imageL = new JLabel(new ImageIcon(new ImageIcon(user.getImageLoad()).getImage().getScaledInstance(150, 150, 0)));
 		JLabel nickNameL = new JLabel("닉네임");
 		JLabel playCountL = new JLabel("전적");
 		JLabel rankL = new JLabel("랭킹");
@@ -103,12 +101,12 @@ public class CY_MyPage {
 		dg.setComponentZOrder(box5, 0);
 		
 		//box라벨 안에 넣는 회원객체 정보들
-		JLabel nickNameT = new JLabel(tp.getNickName());
+		JLabel nickNameT = new JLabel(user.getNickName());
 //		nickNameT.setText(tp.getNickName());
-		JLabel playCountT = new JLabel(tp.getPlaycount() + "전 " + tp.getWin() + "승 " + tp.getLose() + "패");
-		JLabel rankT = new JLabel(tp.getRank() + "위");
-		JLabel dreamT = new JLabel(tp.getDream());
-		JLabel emailT = new JLabel(tp.getEmail());
+		JLabel playCountT = new JLabel(user.getPlaycount() + "전 " + user.getWin() + "승 " + user.getLose() + "패");
+		JLabel rankT = new JLabel(user.getRank() + "위");
+		JLabel dreamT = new JLabel(user.getDream());
+		JLabel emailT = new JLabel(user.getEmail());
 		nickNameT.setBounds(220, 270, 270, 20);
 		nickNameT.setFont(new Font("휴먼편지체", Font.BOLD, 20));
 		playCountT.setBounds(220, 330, 270, 20);
@@ -167,11 +165,11 @@ public class CY_MyPage {
 		fixL.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new CY_AskPassword(mf, tp);
+				new CY_AskPassword(mf, user);
 				//현재 페이지의 라벨들을 새로고침 해준다.
-				dreamT.setText(tp.getDream());
-				emailT.setText(tp.getEmail());
-				imageL.setIcon(new ImageIcon(new ImageIcon(tp.getImageLoad()).getImage().getScaledInstance(150, 150, 0))
+				dreamT.setText(user.getDream());
+				emailT.setText(user.getEmail());
+				imageL.setIcon(new ImageIcon(new ImageIcon(user.getImageLoad()).getImage().getScaledInstance(150, 150, 0))
 						);
 			}
 			@Override
