@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 
 import with_god.controller.ChangePanel;
 import with_god.controller.EJ_RandomBox;
+import with_god.model.dao.UserDao;
 import with_god.model.vo.User;
 
 public class EJ_StoreManager extends JPanel {
@@ -32,11 +33,19 @@ public class EJ_StoreManager extends JPanel {
 	private int imageSizeW = 130;
 	private int imageSizeH = 160;
 	private int coinCount;
+	
+	private int userNum;
+	private UserDao ud = new UserDao();
 
 	public EJ_StoreManager() {}
 	
 	public EJ_StoreManager(JFrame mf, User user) {
-
+		ArrayList <User> auser = ud.readUserList();
+		for(int i = 0; i < auser.size(); i++) {
+			if(auser.get(i) == user) {
+				userNum = i;
+			}
+		}
 		EJ_RandomBox rb = new EJ_RandomBox(user);
 		this.mf = mf;
 		coinCount = user.getCoin();
@@ -89,7 +98,11 @@ public class EJ_StoreManager extends JPanel {
 					itemcount2.setText("ÇØ¿ø¸Æ : " + user.getItemCountH() + "");
 					itemcount3.setText("°­¸² : " + user.getItemCountK() + "");
 					coinCount -= 1000;
-					coin2.setText(coinCount + "");
+					auser.get(userNum).setCoin(coinCount);
+					coin2.setText(auser.get(userNum).getCoin() + "");
+					
+
+					ud.writeUserList(auser);
 										
 					
 				}else {
@@ -145,7 +158,7 @@ public class EJ_StoreManager extends JPanel {
 		exit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MainPage mp = new MainPage(mf, user);
+				MainPage mp = new MainPage(mf, auser.get(userNum));
 				
 				ChangePanel.changePanel(mf, jp,mp);
 

@@ -24,11 +24,12 @@ public class InGamePage extends JPanel {
 	private JLabel clientImage, clientNick, clientWin, clientDream;
 
 	////////////////////// 용훈 추가한거////////////////////////////////
-	public YH_QuizAnswer_ej1 qa = new YH_QuizAnswer_ej1();
-	public YH_GameBoard_ej1[] gb = new YH_GameBoard_ej1[100];
+	public YH_CategoryQuizAnswer qa = new YH_CategoryQuizAnswer();
+	public YH_CategoryGameBoard[] gb = new YH_CategoryGameBoard[100];
 	private int i = 0;
 	private int answerCtn = 0;
 	private String com;
+	private String quizKinds;
 	private int x,y;
 	private int f;
 	//////////////////////////////////////////////////////////////
@@ -49,8 +50,9 @@ public class InGamePage extends JPanel {
 		////////////////////// 용훈 추가한거////////////////////////////////
 		for (int j = 0; j < gb.length; j++) {
 			f=j;
-			gb[j] = new YH_GameBoard_ej1(jp, this, gb, f);
+			gb[j] = new YH_CategoryGameBoard(jp, this, gb, f, user);
 		}
+		f=0;
 		////////////////////// 용훈 추가한거////////////////////////////////
 		// nemo = gb;
 		// nemo.setBounds(30, 30, 620, 620);
@@ -71,15 +73,16 @@ public class InGamePage extends JPanel {
 		// yesL.setBounds(100, 300, 100, 50);
 		yesL.setSize(90, 40);
 		yesL.setLocation(80, 170);
-		f=0;
+		
 		yesL.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// InGamePage igp = new InGamePage(mf, user, new EJ_Timer());
 
 				ingamepanel(mf, jp, user, t1);
-
-				gb[f].CreateGameboard();
+				
+				quizKinds = "넌센스문제.txt";
+				gb[f].CreateGameboard(quizKinds);
 				jp.repaint();
 				// ChangePanel.changePanel(mf, op, new InGamePage(mf, user, t1));
 				t1.start();
@@ -213,7 +216,7 @@ public class InGamePage extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				t1.suspend();
-				new SY_exitDialog(mf, jp, t1);
+				new SY_exitDialog(mf, jp, t1, user);
 
 			}
 		});
@@ -278,7 +281,8 @@ public class InGamePage extends JPanel {
 	}
 
 	////////////////////// 용훈 추가한거////////////////////////////////
-
+	
+	
 	public int getAnswerCtn() {
 		return answerCtn;
 	}
@@ -294,21 +298,21 @@ public class InGamePage extends JPanel {
 	public void setCom(String com) {
 		this.com = com;
 	}
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
+//	public int getX() {
+//		return x;
+//	}
+//
+//	public int getY() {
+//		return y;
+//	}
+//
+//	public void setX(int x) {
+//		this.x = x;
+//	}
+//
+//	public void setY(int y) {
+//		this.y = y;
+//	}
 
 	public int getF() {
 		return f;
@@ -317,5 +321,14 @@ public class InGamePage extends JPanel {
 	public void setF(int f) {
 		this.f = f;
 	}
+
+	public String getQuizKinds() {
+		return quizKinds;
+	}
+
+	public void setQuizKinds(String quizKinds) {
+		this.quizKinds = quizKinds;
+	}
+	
 	////////////////////////////////////////////////////////
 }

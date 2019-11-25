@@ -11,13 +11,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import with_god.controller.SY_changePanel;
+import with_god.model.vo.User;
 
 public class SY_exitDialog {
 	
 	private JFrame jf;    
 	
 	
-	public SY_exitDialog(JFrame jf, JPanel exitPanel) {
+	public SY_exitDialog(JFrame jf, JPanel exitPanel, User user) {
 		Dialog di = new Dialog(jf, true);
 		di.setUndecorated(true);
 		di.setSize(500, 300);
@@ -49,7 +50,7 @@ public class SY_exitDialog {
 	    yesExit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				SY_changePanel.changePanel(jf, exitPanel, new MainPage(jf));
+				SY_changePanel.changePanel(jf, exitPanel, new MainPage(jf, user));
 				di.dispose();
 			}
 	    });
@@ -67,7 +68,7 @@ public class SY_exitDialog {
 
 	}
 	
-	public SY_exitDialog(JFrame jf, JPanel exitPanel , Thread timer1) {
+	public SY_exitDialog(JFrame jf, JPanel exitPanel , Thread timer1, User user) {
 			Dialog di = new Dialog(jf);
 			di.setBounds(400, 230, 500, 300);
 			di.setLayout(null);
@@ -91,14 +92,14 @@ public class SY_exitDialog {
 		    
 		 
 		    di.setComponentZOrder(backGround,2);
-		    
+		    di.setComponentZOrder(quesExit, 0);
 		    
 		    
 			
 		    yesExit.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					SY_changePanel.changePanel(jf, exitPanel, new MainPage(jf));
+					SY_changePanel.changePanel(jf, exitPanel, new MainPage(jf, user));
 					di.dispose();
 //					timer1.interrupt();
 //					timer2.interrupt();
