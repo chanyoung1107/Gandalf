@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
+import with_god.controller.UserManager;
 import with_god.model.vo.User;
 import with_god.model.vo.YH_Quiz;
 
@@ -20,12 +21,15 @@ public class YH_StoryQuizAnswer extends JTextField {
 	
 	private static int f;
 	
+	boolean goStop = true;
+	
 	private IngamePage2 igp;
 	private YH_StoryGameBoard[] gb;
 	private User user;
 
 	private JLabel[][] l;
 	private YH_Quiz[][][] quiz;
+	UserManager um = new UserManager();
 	
 	public YH_StoryQuizAnswer() {
 
@@ -47,6 +51,7 @@ public class YH_StoryQuizAnswer extends JTextField {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				text = tf.getText();
+				goStop = true;
 				KeyCompare();
 				tf.setText("");
 				tf.requestFocus();
@@ -73,15 +78,29 @@ public class YH_StoryQuizAnswer extends JTextField {
 						gb[igp.getF()].l[i][j].setOpaque(true);
 						gb[igp.getF()].l[i][j].setBackground(Color.GRAY);
 						// yh[igp.getF()].l[i][j].setBorder(new LineBorder(Color.red, 5, true));
+						if (goStop) {
+							igp.setScore(igp.getScore() + 10);
+							igp.getScoreL().setText("Score : " + igp.getScore());
+							goStop = false;
+						}
 					}
 				}
 			}
-			if (igp.getAnswerCtn() == 5) {
+			if (igp.getAnswerCtn() == 15) {
 				panel.remove(gb[igp.getF()]);
 				igp.setF(igp.getF() + 1);
 				gb[igp.getF()].CreateGameboard(igp.getQuizKinds());
 				panel.repaint();
 				igp.setAnswerCtn(0);
+				
+				user.setScore(user.getScore()+igp.getScore());
+				user.setCoin(user.getCoin() + 500);
+				
+				um.updateScore(user);
+				um.updateCoin(user);
+				
+				System.out.println(user.getCoin());
+				System.out.println(user.getScore());
 			}
 
 		} else {

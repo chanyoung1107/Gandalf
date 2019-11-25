@@ -44,7 +44,7 @@ public class YH_CategoryGameBoard extends JLabel {
 	private int quizTempKeyNum;
 	private int quizCtn = 0;
 	private int ctn = 0;
-	private int quizCtnCheck = 5;
+	private int quizCtnCheck = 15;
 
 	private int loopCtn = 0;
 	private int x;
@@ -104,6 +104,8 @@ public class YH_CategoryGameBoard extends JLabel {
 	}
 
 	public void CreateGameboard(String quizKinds) {
+		
+		JLabel scoreL = new JLabel();
 
 		qsp = new YH_QuizShowPanel(panel);
 

@@ -44,7 +44,7 @@ public class YH_StoryGameBoard extends JLabel {
 	private int quizTempKeyNum;
 	private int quizCtn = 0;
 	private int ctn = 0;
-	private int quizCtnCheck = 5;
+	private int quizCtnCheck = 15;
 
 	private int loopCtn = 0;
 	private int x;
