@@ -15,12 +15,15 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import with_god.controller.CY_ChooseDirectory;
+import with_god.controller.UserManager;
+import with_god.model.dao.UserDao;
 import with_god.model.vo.User;
 
 public class CY_FixPage {
 	
+	UserDao ud = new UserDao();
+	UserManager um = new UserManager();
 
-	
 	public CY_FixPage(JFrame mf, User user) {
 		String tempImage = user.getImageLoad();
 		Dialog dg = new Dialog(mf, true);
@@ -156,6 +159,7 @@ public class CY_FixPage {
 						user.setPw(pw1);
 						user.setDream(fixDreamT.getText());
 						user.setEmail(fixEmailT.getText());
+						um.updatePw(user);
 						
 						JOptionPane.showMessageDialog(mf, "성공적으로 변경되었습니다.", "확인", JOptionPane.INFORMATION_MESSAGE);
 						dg.dispose();
@@ -173,6 +177,7 @@ public class CY_FixPage {
 					//다른 수정 정보만 객체에 저장 후 확인 dialog 창 띄운후 마이페이지로 넘어감
 					user.setDream(fixDreamT.getText());
 					user.setEmail(fixEmailT.getText());
+					
 					JOptionPane.showMessageDialog(mf, "성공적으로 변경되었습니다.",  "확인", JOptionPane.INFORMATION_MESSAGE);
 					dg.dispose();
 				}

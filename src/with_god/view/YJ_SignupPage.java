@@ -3,14 +3,10 @@ package with_god.view;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -21,8 +17,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import with_god.controller.UserManager;
 import with_god.controller.YJ_Email;
-import with_god.controller.YJ_UserManager;
 import with_god.model.dao.UserDao;
 import with_god.model.vo.User;
 
@@ -340,21 +336,21 @@ public class YJ_SignupPage {
 		emailpwC.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (list == null) {
-					d = true;
-				} else {
-					for (int i = 0; i < list.size(); i++) {
-						if (!emailPW.getText().equals(list.get(i).getReturnNum())) {
-							d = true;
-						}else {
-							d = false;}}}
-				if(d) {
-//					인증번호동일시 노출되는 다이얼로그
-					JOptionPane.showMessageDialog(null, "인증번호 확인완료");
-				}else {
-//					중복된 닉네임 입니다 다이얼로그 텍스트 지우고 슬래쉬
-					JOptionPane.showMessageDialog(null, "사용 가능한 닉네임입니다");
-					}
+//				if (list == null) {
+//					d = true;
+//				} else {
+//					for (int i = 0; i < list.size(); i++) {
+//						if (!emailPW.getText().equals(list.get(i).getReturnNum())) {
+//							d = true;
+//						}else {
+//							d = false;}}}
+//				if(d) {
+////					인증번호동일시 노출되는 다이얼로그
+//					JOptionPane.showMessageDialog(null, "인증번호 확인완료");
+//				}else {
+////					중복된 닉네임 입니다 다이얼로그 텍스트 지우고 슬래쉬
+//					JOptionPane.showMessageDialog(null, "사용 가능한 닉네임입니다");
+//					}
 				}
 			});
 		
@@ -405,7 +401,7 @@ public class YJ_SignupPage {
 				user.setName(nameT.getText());
 				user.setNickName(nickT.getText());
 				user.setEmail(emailT.getText());
-				YJ_UserManager um = new YJ_UserManager();
+				UserManager um = new UserManager();
 				um.insertUser(user);
 				
 				System.out.println(um);
